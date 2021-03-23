@@ -12,10 +12,10 @@ from django.contrib.auth import login
 # Imports for Reordering Feature
 from django.views import View
 from django.shortcuts import redirect
-from django import forms
 from django.db import transaction
 
 from .models import Task
+from .forms import PositionForm
 
 
 class CustomLoginView(LoginView):
@@ -91,12 +91,9 @@ class DeleteView(LoginRequiredMixin, DeleteView):
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
 
-# Reordering Form and View
-class PositionForm(forms.Form):
-    position = forms.CharField()
 
 class TaskReorder(View):
-    def post(self,request):
+    def post(self, request):
         form = PositionForm(request.POST)
 
         if form.is_valid():
@@ -104,7 +101,5 @@ class TaskReorder(View):
 
             with transaction.atomic():
                 self.request.user.set_task_order(positionList)
-
-                
 
         return redirect(reverse_lazy('tasks'))

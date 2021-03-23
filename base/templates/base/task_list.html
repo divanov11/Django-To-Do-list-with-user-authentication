@@ -18,19 +18,16 @@
         <input type='text' name='search-area' value="{{search_input}}">
         <input class="button" type="submit" value='Search'>
     </form>
-    <div class="task-controls-wrapper">
-        <form id="reorderForm" method="post" action="{% url 'task-reorder' %}">
-            {% csrf_token %}
-            <input type="hidden" id="positionInput" name="position">
-        </form>
-        <button class="button" id="reorderButton" disabled>Save Priority</button>
-        <a id="add-link" class="button" href="{% url 'task-create' %}">New Task</a>
-
-    </div>
+    <a id="add-link" href="{% url 'task-create' %}">&#x2b;</a>
 
 </div>
 
 
+<!-- Hidden form. Form submits new item positions -->
+<form style="display: none;" id="reorderForm" method="post" action="{% url 'task-reorder' %}">
+    {% csrf_token %}
+    <input type="hidden" id="positionInput" name="position">
+</form>
 
 
 <div id="tasklist" class="task-items-wrapper">
@@ -43,7 +40,7 @@
             <div class="task-incomplete-icon"></div>
             <a href="{% url 'task-update' task.id %}">{{task}}</a> {% endif %}
         </div>
-        <div class="tasl-controls">
+        <div class="task-controls">
             <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
             <span class="handle">&nbsp;&#10247;</span>
         </div>
@@ -57,17 +54,13 @@
 <script>
     var taskList = document.getElementById("tasklist");
     var reorderForm = document.getElementById("reorderForm");
-    var reorderButton = document.getElementById("reorderButton");
     var positionInput = document.getElementById("positionInput");
 
     let sortable = Sortable.create(taskList, {
         handle: '.handle',
         ghostClass: 'dropArea',
         chosenClass: 'selectedTask',
-        onChange: () => {
-                reorderButton.disabled = false;
-            }
-            //onUpdate: reordering
+
     });
 
     function reordering() {
@@ -81,7 +74,7 @@
         reorderForm.submit();
     }
 
-    reorderButton.addEventListener('click', reordering);
+    document.ondrop = reordering
 </script>
 
 {% endblock content %}
