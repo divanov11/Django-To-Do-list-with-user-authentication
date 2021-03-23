@@ -16,9 +16,7 @@
             background-color: #FAFAFA;
             font-family: 'Nunito', sans-serif;
             padding-top: 50px;
-
         }
-
 
         h1,
         h2,
@@ -61,14 +59,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px;
             background-color: #fff;
-            border-top: 1px solid rgb(226, 226, 226);
+            border-top: 1px solid #dfe4ea;
+            overflow: hidden;
         }
-
 
         .task-title {
             display: flex;
+            padding: 20px;
         }
 
         .task-title a {
@@ -97,21 +95,53 @@
             color: #cf4949;
             font-size: 22px;
             line-height: 0;
+            padding: 20px 0px;
         }
 
-        #search-add-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
+        /*Handle Classes*/
+
+        .handle {
+            display: inline-block;
+            padding: 20px 16px;
+            cursor: grab;
+            user-select: none;
         }
+
+        .handle:after,
+        .handle:before {
+            display: block;
+            content: "";
+        }
+
+        .handle:active,
+        .handle:active:before,
+        .handle:active:after {
+            cursor: grabbing;
+        }
+
+        .dropArea {
+            background-color: #f1f2f6;
+            color: black;
+            border: #ced6e0 1px solid;
+        }
+
+        .selectedTask {
+            opacity: 0.6;
+        }
+
 
         #add-link {
             color: #EB796F;
             text-decoration: none;
             font-size: 42px;
             text-shadow: 1px 1px #81413b;
+        }
 
+        #search-add-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
         }
 
         input[type=text],
@@ -148,11 +178,10 @@
 <body>
 
     <div class="container">
-        {% block content %}
-
-        {% endblock content %}
+        {% block content %} {% endblock content %}
     </div>
 
 </body>
+
 
 </html>

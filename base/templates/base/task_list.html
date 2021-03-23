@@ -1,7 +1,6 @@
-{% extends 'base/main.html' %}
-{% block content %}
+{% extends 'base/main.html' %} {% block content %}
 
-
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <div class="header-bar">
     <div>
         <h1>Hello {{request.user|title}}</h1>
@@ -9,46 +8,73 @@
     </div>
 
     {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+    <a href="{% url 'logout' %}">Logout</a> {% else %}
+    <a href="{% url 'login' %}">Login</a> {% endif %}
 </div>
 
 
 <div id="search-add-wrapper">
-    <form method="GET" style="margin-top: 20px;display: flex;">
+    <form method="GET" style="display: flex;">
         <input type='text' name='search-area' value="{{search_input}}">
         <input class="button" type="submit" value='Search'>
     </form>
     <a id="add-link" href="{% url 'task-create' %}">&#x2b;</a>
+
 </div>
 
 
+<!-- Hidden form. Form submits new item positions -->
+<form style="display: none;" id="reorderForm" method="post" action="{% url 'task-reorder' %}">
+    {% csrf_token %}
+    <input type="hidden" id="positionInput" name="position">
+</form>
 
 
-<div class="task-items-wrapper">
+<div id="tasklist" class="task-items-wrapper">
     {% for task in tasks %}
-    <div class="task-wrapper">
-        {% if task.complete %}
+    <div class="task-wrapper" data-position="{{task.pk}}">
         <div class="task-title">
+            {% if task.complete %}
             <div class="task-complete-icon"></div>
-            <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i>
-        </div>
-        <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
-        {% else %}
-        <div class="task-title">
+            <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i> {% else %}
             <div class="task-incomplete-icon"></div>
-            <a href="{% url 'task-update' task.id %}">{{task}}</a>
+            <a href="{% url 'task-update' task.id %}">{{task}}</a> {% endif %}
         </div>
-        <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
-        {% endif %}
-
+        <div class="task-controls">
+            <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+            <span class="handle">&nbsp;&#10247;</span>
+        </div>
     </div>
 
     {% empty %}
     <h3>No items in list</h3>
     {% endfor %}
 </div>
+
+<script>
+    var taskList = document.getElementById("tasklist");
+    var reorderForm = document.getElementById("reorderForm");
+    var positionInput = document.getElementById("positionInput");
+
+    let sortable = Sortable.create(taskList, {
+        handle: '.handle',
+        ghostClass: 'dropArea',
+        chosenClass: 'selectedTask',
+
+    });
+
+    function reordering() {
+        const rows = document.getElementsByClassName("task-wrapper");
+        let pos = [];
+        for (let row of rows) {
+            pos.push(row.dataset.position);
+        }
+        console.log(pos.join(","))
+        positionInput.value = pos.join(',');
+        reorderForm.submit();
+    }
+
+    document.ondrop = reordering
+</script>
 
 {% endblock content %}
