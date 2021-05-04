@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
+    <meta name="description" content="This is to do list implemented using Django by Dennis Ivy who is a full stack web developer.">
+    <meta name="theme-color" content="#317EFB"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>To Do Items</title>
     <meta name="description" content="">
@@ -33,6 +35,10 @@
             color: #4b5156
         }
 
+        a {
+            font-weight: 600;
+        }
+
         .container {
             max-width: 550px;
             margin: auto;
@@ -41,13 +47,18 @@
             box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
         }
 
+        input {
+            outline: none;
+            border: none;
+        }
+
         .header-bar {
             display: flex;
             justify-content: space-between;
             color: #fff;
             padding: 10px;
             border-radius: 5px 5px 0 0;
-            background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%);
+            background-color: #64b5f6;
         }
 
         .header-bar a {
@@ -85,7 +96,7 @@
         .task-incomplete-icon {
             height: 20px;
             width: 20px;
-            background-color: rgb(218, 218, 218);
+            background-color: #fdd835;
             border-radius: 50%;
         }
 
@@ -144,10 +155,16 @@
             padding: 20px;
         }
 
+        @media screen and (max-width:320px) {
+            #search-add-wrapper {
+                padding: 10px;
+            }
+        }
+
         input[type=text],
         input[type=password],
         textarea {
-            border: 1px solid #EB796F;
+            border: 2px solid #757575;
             border-radius: 5px;
             padding: 10px;
             width: 90%;
@@ -158,12 +175,18 @@
             display: block;
         }
 
+        ::placeholder {
+            font-weight: 600;
+            opacity: 0.5;
+        }
+
         .button {
-            border: 1px solid #EB796F;
-            background-color: #FAFAFA;
+            border: 2px solid #757575;
+            background-color: #FFF;
             color: #EB796F;
             padding: 10px;
             font-size: 14px;
+            font-weight: 700;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
