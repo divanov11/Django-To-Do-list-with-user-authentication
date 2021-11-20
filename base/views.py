@@ -68,6 +68,11 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
+     def dispatch(self, request, *args, **kwargs):
+        task=self.get_object()
+        if task.user != self.request.user:
+            raise Http404("You don't have permission to edit this Task")
+        return super().dispatch(request, *args, **kwargs)
 
 
 class TaskCreate(LoginRequiredMixin, CreateView):
