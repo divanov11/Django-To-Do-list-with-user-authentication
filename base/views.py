@@ -84,6 +84,12 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
+    def dispatch(self, request, *args, **kwargs):
+        task=self.get_object()
+        if task.user != self.request.user:
+            raise Http404("You don't have permission to edit this Task")
+        return super().dispatch(request, *args, **kwargs)
+
 
 
 class DeleteView(LoginRequiredMixin, DeleteView):
