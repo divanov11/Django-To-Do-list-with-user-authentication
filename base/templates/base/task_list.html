@@ -3,20 +3,20 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <div class="header-bar">
     <div>
-        <h1>Hello {{request.user|title}}</h1>
-        <h3 style="margin:0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:"s" }}</h3>
+        <h1>{{request.user|title}} ٱلسَّلَامُ عَلَيْكُمْ</h1>
+        <h3 style="margin:0">আপনার <i>{{count}}</i> টি আমল বাকি আছে</h3>
     </div>
 
     {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a> {% else %}
+    <a href="{% url 'logout' %}">লগআউট</a> {% else %}
     <a href="{% url 'login' %}">Login</a> {% endif %}
 </div>
 
 
 <div id="search-add-wrapper">
     <form method="GET" style="display: flex;">
-        <input type='text' name='search-area' placeholder="Search your task" value="{{search_input}}">
-        <input class="button" type="submit" value='Search'>
+        <input type='text' name='search-area' placeholder="আমল এর নাম" value="{{search_input}}">
+        <input class="button" type="submit" value='খুঁজুন'>
     </form>
     {% if tasks|length > 0 %}
     <a id="add-link" href="{% url 'task-create' %}">&#x2b;</a>

@@ -65,9 +65,9 @@ class TaskList(LoginRequiredMixin, ListView):
 
 
 class TaskDetail(LoginRequiredMixin, DetailView):
-    model = Task
-    context_object_name = 'task'
-    template_name = 'base/task.html'
+     model = Task
+     context_object_name = 'task'
+     template_name = 'base/task.html'
 
 
 class TaskCreate(LoginRequiredMixin, CreateView):
@@ -82,7 +82,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = ['title', 'complete']
+    fields = ['complete']
     success_url = reverse_lazy('tasks')
 
 

@@ -2,15 +2,16 @@
 {% block content %}
 
 <div class="header-bar">
-    <a href="{% url 'tasks' %}">&#8592; Back</a>
+    <a href="{% url 'tasks' %}">&#8592; পিছনে</a>
 </div>
 
 
 <div class="card-body">
     <form method="POST" action="">
         {% csrf_token %}
+        <label for="title"> <b>{{task}}</b> </label>
         {{form.as_p}}
-        <input class="button" type="submit" value="Save">
+        <input class="button" type="submit" value="ঠিক আছে">
     </form>
 </div>
 
