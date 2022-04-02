@@ -18,6 +18,7 @@
         <input type='text' name='search-area' placeholder="আমল এর নাম" value="{{search_input}}">
         <input class="button" type="submit" value='খুঁজুন'>
     </form>
+
     {% if tasks|length > 0 %}
     <a id="add-link" href="{% url 'task-create' %}">&#x2b;</a>
     {% endif %}

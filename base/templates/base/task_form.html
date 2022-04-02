@@ -9,8 +9,10 @@
 <div class="card-body">
     <form method="POST" action="">
         {% csrf_token %}
-        <label for="title"> <b>{{task}}</b> </label>
-        {{form.as_p}}
+        <label> <b>{{ task }}</b> </label>
+        <label for="is_done">আমল সম্পূর্ণ করা হয়েছে</label>
+        <input id="is_done" type="checkbox" name="complete" {% if task.complete == True %} checked="checked" {% endif %}>
+        <p>
         <input class="button" type="submit" value="ঠিক আছে">
     </form>
 </div>

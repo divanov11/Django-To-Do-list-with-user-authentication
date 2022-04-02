@@ -1,3 +1,4 @@
+from cProfile import label
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -16,6 +17,9 @@ from django.db import transaction
 
 from .models import Task
 from .forms import PositionForm
+
+# Imports for translation
+from django.utils.translation import gettext_lazy as _
 
 
 class CustomLoginView(LoginView):

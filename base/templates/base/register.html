@@ -2,23 +2,23 @@
 {% block content %}
 
 <div class="header-bar">
-    <h1>Register</h1>
+    <h1>রেজিস্টার</h1>
 </div>
 
 <div class="card-body">
     <form method="POST">
         {% csrf_token %}
-        <label>{{form.username.label}}</label>
+        <label>ইউজার</label>
         {{form.username}}
 
-        <label>{{form.password1.label}}</label>
+        <label>পাসওয়ার্ড</label>
         {{form.password1}}
 
-        <label>{{form.password2.label}}</label>
+        <label>পাসওয়ার্ড নিশ্চিত করুন</label>
         {{form.password2}}
-        <input style="margin-top:10px ;" class="button" type="submit" value="Register">
+        <input style="margin-top:10px ;" class="button" type="submit" value="রেজিস্টার">
     </form>
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    <p>ইতিমধ্যে অ্যাকাউন্ট আছে? <a href="{% url 'login' %}">লগইন</a></p>
 </div>
 
 

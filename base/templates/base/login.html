@@ -8,7 +8,11 @@
 <div class="card-body">
     <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        <label>ইউজার</label>
+        {{form.username}}
+        <label>পাসওয়ার্ড</label>
+        {{form.password}}
+        <p>
         <input class="button" type="submit" value="লগইন">
     </form>
     <p>অ্যাকাউন্ট নেই? <a href="{% url 'register' %}">রেজিস্টার</a></p>
