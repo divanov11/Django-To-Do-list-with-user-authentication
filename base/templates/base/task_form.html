@@ -10,8 +10,72 @@
     <form method="POST" action="">
         {% csrf_token %}
         <label> <b>{{ task }}</b> </label>
-        <label for="is_done">আমল সম্পূর্ণ করা হয়েছে</label>
-        <input id="is_done" type="checkbox" name="complete" {% if task.complete == True %} checked="checked" {% endif %}>
+        <table>
+            <tr>
+                <th>১</th>
+                <th>২</th>
+                <th>৩</th>
+                <th>৪</th>
+                <th>৫</th>
+                <th>৬</th>
+                <th>৭</th>
+                <th>৮</th>
+                <th>৯</th>
+                <th>১০</th>
+                <th>১১</th>
+                <th>১২</th>
+                <th>১৩</th>
+                <th>১৪</th>
+                <th>১৫</th>
+                <th>১৬</th>
+                <th>১৭</th>
+                <th>১৮</th>
+                <th>১৯</th>
+                <th>২০</th>
+                <th>২১</th>
+                <th>২২</th>
+                <th>২৩</th>
+                <th>২৪</th>
+                <th>২৫</th>
+                <th>২৬</th>
+                <th>২৭</th>
+                <th>২৮</th>
+                <th>২৯</th>
+                <th>৩০</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="day1" {% if task.day1 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day2" {% if task.day2 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day3" {% if task.day3 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day4" {% if task.day4 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day5" {% if task.day5 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day6" {% if task.day6 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day7" {% if task.day7 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day8" {% if task.day8 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day9" {% if task.day9 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day10" {% if task.day10 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day11" {% if task.day11 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day12" {% if task.day12 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day13" {% if task.day13 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day14" {% if task.day14 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day15" {% if task.day15 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day16" {% if task.day16 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day17" {% if task.day17 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day18" {% if task.day18 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day19" {% if task.day19 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day20" {% if task.day20 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day21" {% if task.day21 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day22" {% if task.day22 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day23" {% if task.day23 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day24" {% if task.day24 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day25" {% if task.day25 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day26" {% if task.day26 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day27" {% if task.day27 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day29" {% if task.day29 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day28" {% if task.day28 == True %} checked="checked" {% endif %}></td>
+                <td><input type="checkbox" name="day30" {% if task.day30 == True %} checked="checked" {% endif %}></td>
+            </tr>
+        </table>
         <p>
         <input class="button" type="submit" value="ঠিক আছে">
     </form>
