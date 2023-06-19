@@ -116,6 +116,8 @@ USE_TZ = True
 
 LOGIN_URL = 'login'
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
