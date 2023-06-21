@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
 
+
+
+# model named "Task" that represents tasks that can be created and managed. The model has the following fields:
 
 class Task(models.Model):
     user = models.ForeignKey(
