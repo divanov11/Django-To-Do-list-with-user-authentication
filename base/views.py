@@ -18,6 +18,7 @@ from .models import Task
 from .forms import PositionForm
 
 
+# CustomLoginView extends the built-in LoginView class provided by Django
 class CustomLoginView(LoginView):
     template_name = 'base/login.html'
     fields = '__all__'
@@ -27,6 +28,7 @@ class CustomLoginView(LoginView):
         return reverse_lazy('tasks')
 
 
+# RegisterPage extends the built-in FormView class provided by Django
 class RegisterPage(FormView):
     template_name = 'base/register.html'
     form_class = UserCreationForm
@@ -45,6 +47,7 @@ class RegisterPage(FormView):
         return super(RegisterPage, self).get(*args, **kwargs)
 
 
+# The TaskList view inherits from the LoginRequiredMixin and the ListView classes and sets the model to be used as the Task model
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
@@ -64,12 +67,14 @@ class TaskList(LoginRequiredMixin, ListView):
         return context
 
 
+# The TaskDetail view inherits from the LoginRequiredMixin and the DetailView classes and sets the model to be used as the Task model.
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
 
 
+# The TaskCreate view is responsible for creating a new task. It inherits from the LoginRequiredMixin, which ensures that the user is authenticated before allowing them to access the view. 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title', 'description', 'complete']
@@ -80,12 +85,14 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         return super(TaskCreate, self).form_valid(form)
 
 
+# The TaskUpdate view is responsible for updating an existing task. It also inherits from the LoginRequiredMixin to ensure that the user is authenticated. 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
 
 
+# "DeleteView" is a Django built-in class-based view that inherits from "LoginRequiredMixin" and "DeleteView". It is used to delete a task object from the database and redirect the user to the "tasks" URL.
 class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
@@ -94,6 +101,7 @@ class DeleteView(LoginRequiredMixin, DeleteView):
         owner = self.request.user
         return self.model.objects.filter(user=owner)
 
+# "TaskReorder" is a custom view that inherits from "View". It is used to reorder the current user's tasks based on the positions submitted through a "PositionForm"
 class TaskReorder(View):
     def post(self, request):
         form = PositionForm(request.POST)
