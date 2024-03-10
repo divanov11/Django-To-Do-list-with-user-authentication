@@ -12,6 +12,14 @@
     <a href="{% url 'login' %}">Login</a> {% endif %}
 </div>
 
+{% for date, tasks in tasks_by_date.items %}
+<h2>{{ date }}</h2>
+<ul>
+    {% for task in tasks %}
+    <li>{{ task.title }}</li>
+    {% endfor %}
+</ul>
+{% endfor %}
 
 <div id="search-add-wrapper">
     <form method="GET" style="display: flex;">

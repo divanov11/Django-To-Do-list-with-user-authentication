@@ -16,6 +16,9 @@ from django.db import transaction
 
 from .models import Task
 from .forms import PositionForm
+from django.shortcuts import render
+from .models import Task
+
 
 
 class CustomLoginView(LoginView):
@@ -105,3 +108,15 @@ class TaskReorder(View):
                 self.request.user.set_task_order(positionList)
 
         return redirect(reverse_lazy('tasks'))
+
+def task_list(request):
+    tasks_by_date = {}
+    tasks = Task.objects.all().order_by('-created_at')
+
+    for task in tasks:
+        date = task.created_at.date()
+        if date not in tasks_by_date:
+            tasks_by_date[date] = []
+        tasks_by_date[date].append(task)
+
+    return render(request, 'task_list.html', {'tasks_by_date': tasks_by_date})
